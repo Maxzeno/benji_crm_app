@@ -13,7 +13,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../controller/api_processor_controller.dart';
 import '../../controller/form_controller.dart';
 import '../../controller/product_controller.dart';
-import '../../controller/push_notifications_controller.dart';
 import '../../controller/user_controller.dart';
 import '../../model/business_model.dart';
 import '../../model/product_model.dart';
@@ -139,10 +138,10 @@ class _AddThirdPartyBusinessProductState
     );
     if (FormController.instance.status.toString().startsWith('20')) {
       await ProductController.instance.refreshData(widget.business.id);
-      await PushNotificationController.showNotification(
-        title: "Success",
-        body: "${productNameEC.text} has been added to your products",
-      );
+      // await PushNotificationController.showNotification(
+      //   title: "Success",
+      //   body: "${productNameEC.text} has been added to your products",
+      // );
       Get.close(1);
     }
   }
@@ -196,7 +195,7 @@ class _AddThirdPartyBusinessProductState
                               const BorderSide(width: 0.5, color: kGreyColor1),
                         ),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: FaIcon(
                           FontAwesomeIcons.camera,
                           color: kAccentColor,
@@ -228,7 +227,7 @@ class _AddThirdPartyBusinessProductState
                           ),
                         ),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: FaIcon(
                           FontAwesomeIcons.solidImages,
                           color: kAccentColor,
@@ -361,7 +360,7 @@ class _AddThirdPartyBusinessProductState
                           borderRadius: BorderRadius.circular(16),
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            child: Text(
+                            child: const Text(
                               'Upload product image',
                               style: TextStyle(
                                 color: kAccentColor,

@@ -33,7 +33,6 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../theme/colors.dart';
 import '../../controller/form_controller.dart';
-import '../../controller/push_notifications_controller.dart';
 
 class EditThirdPartyVendor extends StatefulWidget {
   final ThirdPartyVendorModel vendor;
@@ -213,10 +212,10 @@ class _EditThirdPartyVendorState extends State<EditThirdPartyVendor> {
         "changeVendorPersonalProfile",
         true);
     if (FormController.instance.status.toString().startsWith('2')) {}
-    await PushNotificationController.showNotification(
-      title: "Success.",
-      body: "Your personal profile has been successfully updated.",
-    );
+    // await PushNotificationController.showNotification(
+    //   title: "Success.",
+    //   body: "Your personal profile has been successfully updated.",
+    // );
     Get.close(2);
     VendorController.instance.refreshData();
   }
@@ -257,7 +256,7 @@ class _EditThirdPartyVendorState extends State<EditThirdPartyVendor> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.camera,
                             color: kAccentColor,
@@ -289,7 +288,7 @@ class _EditThirdPartyVendorState extends State<EditThirdPartyVendor> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.images,
                             color: kAccentColor,
@@ -381,7 +380,7 @@ class _EditThirdPartyVendorState extends State<EditThirdPartyVendor> {
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
                       padding: const EdgeInsets.all(10),
-                      child: Text(
+                      child: const Text(
                         'Upload your profile picture',
                         style: TextStyle(
                           color: kAccentColor,
@@ -497,7 +496,8 @@ class _EditThirdPartyVendorState extends State<EditThirdPartyVendor> {
                             dropdownIconPosition: IconPosition.trailing,
                             showCountryFlag: true,
                             showDropdownIcon: true,
-                            dropdownIcon: Icon(Icons.arrow_drop_down_rounded,
+                            dropdownIcon: const Icon(
+                                Icons.arrow_drop_down_rounded,
                                 color: kAccentColor),
                             textInputAction: TextInputAction.next,
                             focusNode: userPhoneNumberFN,
@@ -558,9 +558,8 @@ class _EditThirdPartyVendorState extends State<EditThirdPartyVendor> {
                                 focusNode: mapsLocationFN,
                                 hintText: "Search a location",
                                 textInputType: TextInputType.text,
-                                prefixIcon: Padding(
-                                  padding:
-                                      const EdgeInsets.all(kDefaultPadding),
+                                prefixIcon: const Padding(
+                                  padding: EdgeInsets.all(kDefaultPadding),
                                   child: FaIcon(
                                     FontAwesomeIcons.locationDot,
                                     color: kAccentColor,
@@ -576,7 +575,7 @@ class _EditThirdPartyVendorState extends State<EditThirdPartyVendor> {
                               ),
                               ElevatedButton.icon(
                                 onPressed: getLocationOnMap,
-                                icon: FaIcon(
+                                icon: const FaIcon(
                                   FontAwesomeIcons.locationArrow,
                                   color: kAccentColor,
                                   size: 18,

@@ -21,6 +21,7 @@ import 'package:benji_aggregator/controller/vendor_controller.dart';
 import 'package:benji_aggregator/controller/withdraw_controller.dart';
 import 'package:benji_aggregator/theme/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/splash_screens/splash_screen.dart';
-import 'controller/fcm_messaging_controller.dart';
 import 'controller/login_controller.dart';
 import 'controller/push_notifications_controller.dart';
 import 'controller/reviews_controller.dart';
@@ -38,6 +38,7 @@ import 'firebase_options.dart';
 import 'theme/app_theme.dart';
 
 late SharedPreferences prefs;
+late MyPushNotification localNotificationService;
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -46,7 +47,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
   // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  Get.put(FcmMessagingController());
 
   Get.put(UserController());
   Get.put(LoginController());
@@ -81,7 +81,16 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     await FirebaseMessaging.instance.setAutoInitEnabled(true);
-    await PushNotificationController.initializeNotification();
+    localNotificationService = MyPushNotification();
+
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
+    await localNotificationService.firebase.setAutoInitEnabled(true);
   }
 
   runApp(const MyApp());

@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:benji_aggregator/src/components/input/my_intl_phonefield.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +21,6 @@ import '../../services/api_url.dart';
 import '../../src/components/appbar/my_appbar.dart';
 import '../../src/components/input/item_category_dropdown_menu.dart';
 import '../../src/components/input/my_maps_textformfield.dart';
-import '../../src/components/input/my_phone_field.dart';
 import '../../src/components/input/my_textformfield.dart';
 import '../../src/components/input/number_textformfield.dart';
 import '../../src/components/section/location_list_tile.dart';
@@ -477,7 +477,7 @@ class _SendPackageState extends State<SendPackage> {
                       elevation: 20.0,
                       side: submittingForm
                           ? BorderSide(color: kLightGreyColor, width: 1.2)
-                          : BorderSide(color: kAccentColor, width: 1.2),
+                          : const BorderSide(color: kAccentColor, width: 1.2),
                       fixedSize: Size((media.size.width * 0.40) - 45, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -513,13 +513,13 @@ class _SendPackageState extends State<SendPackage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: kPrimaryColor,
                       elevation: 20.0,
-                      side: BorderSide(color: kAccentColor, width: 1.2),
+                      side: const BorderSide(color: kAccentColor, width: 1.2),
                       fixedSize: Size((media.size.width * 0.40) - 45, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Back",
                       style: TextStyle(color: kAccentColor),
                     ),
@@ -584,8 +584,8 @@ class _SendPackageState extends State<SendPackage> {
                 focusNode: pickupFN,
                 hintText: "Pick location",
                 textInputType: TextInputType.text,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.all(kDefaultPadding),
                   child: FaIcon(
                     FontAwesomeIcons.locationDot,
                     color: kAccentColor,
@@ -601,7 +601,7 @@ class _SendPackageState extends State<SendPackage> {
               ),
               ElevatedButton.icon(
                 onPressed: toGetLocationOnMapPick,
-                icon: FaIcon(
+                icon: const FaIcon(
                   FontAwesomeIcons.locationArrow,
                   color: kAccentColor,
                   size: 18,
@@ -696,13 +696,13 @@ class _SendPackageState extends State<SendPackage> {
                 ),
               ),
               kHalfSizedBox,
-              MyPhoneField(
+              MyIntlPhoneField(
                 initialCountryCode: "NG",
                 invalidNumberMessage: "Invalid phone number",
                 dropdownIconPosition: IconPosition.trailing,
                 showCountryFlag: true,
                 showDropdownIcon: true,
-                dropdownIcon: Icon(
+                dropdownIcon: const Icon(
                   Icons.arrow_drop_down_rounded,
                   color: kAccentColor,
                 ),
@@ -778,8 +778,8 @@ class _SendPackageState extends State<SendPackage> {
                 focusNode: dropOffFN,
                 hintText: "Drop off location",
                 textInputType: TextInputType.text,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.all(kDefaultPadding),
                   child: FaIcon(
                     FontAwesomeIcons.locationDot,
                     color: kAccentColor,
@@ -795,7 +795,7 @@ class _SendPackageState extends State<SendPackage> {
               ),
               ElevatedButton.icon(
                 onPressed: toGetLocationOnMapDrop,
-                icon: FaIcon(
+                icon: const FaIcon(
                   FontAwesomeIcons.locationArrow,
                   color: kAccentColor,
                   size: 18,
@@ -890,13 +890,13 @@ class _SendPackageState extends State<SendPackage> {
                 ),
               ),
               kHalfSizedBox,
-              MyPhoneField(
+              MyIntlPhoneField(
                 initialCountryCode: "NG",
                 invalidNumberMessage: "Invalid phone number",
                 dropdownIconPosition: IconPosition.trailing,
                 showCountryFlag: true,
                 showDropdownIcon: true,
-                dropdownIcon: Icon(
+                dropdownIcon: const Icon(
                   Icons.arrow_drop_down_rounded,
                   color: kAccentColor,
                 ),
@@ -1174,7 +1174,7 @@ class _SendPackageState extends State<SendPackage> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.camera,
                             color: kAccentColor,
@@ -1206,7 +1206,7 @@ class _SendPackageState extends State<SendPackage> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.image,
                             color: kAccentColor,
@@ -1266,7 +1266,7 @@ class _SendPackageState extends State<SendPackage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  side: BorderSide(color: kAccentColor),
+                  side: const BorderSide(color: kAccentColor),
                 ),
                 child: const Text(
                   "My Packages",

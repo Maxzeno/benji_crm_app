@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:benji_aggregator/app/assign/assign_rider.dart';
 import 'package:benji_aggregator/controller/form_controller.dart';
 import 'package:benji_aggregator/controller/package_controller.dart';
-import 'package:benji_aggregator/controller/push_notifications_controller.dart';
 import 'package:benji_aggregator/model/package/delivery_item.dart';
 import 'package:benji_aggregator/services/api_url.dart';
 import 'package:benji_aggregator/src/components/appbar/my_appbar.dart';
@@ -238,12 +237,12 @@ class _ViewPackageState extends State<ViewPackage> {
     consoleLog(data.toString());
     await FormController.instance.patchAuth(url, data, 'dispatchPackage');
     if (FormController.instance.status.toString().startsWith('2')) {
-      await PushNotificationController.showNotification(
-        title: "Success",
-        body: dispatchMessage,
-        summary: "Package Delivery",
-        largeIcon: "asset://assets/icons/package.png",
-      );
+      // await PushNotificationController.showNotification(
+      //   title: "Success",
+      //   body: dispatchMessage,
+      //   summary: "Package Delivery",
+      //   largeIcon: "asset://assets/icons/package.png",
+      // );
       setState(() {
         isDispatched = true;
       });
@@ -469,7 +468,7 @@ class _ViewPackageState extends State<ViewPackage> {
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: "ji",
                                         style: TextStyle(
                                           color: kAccentColor,
@@ -502,7 +501,7 @@ class _ViewPackageState extends State<ViewPackage> {
                             ),
                             TextSpan(
                               text: widget.deliveryItem.code,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: kAccentColor,
                                 fontSize: 18,
                                 fontStyle: FontStyle.italic,
@@ -540,7 +539,7 @@ class _ViewPackageState extends State<ViewPackage> {
                                   padding:
                                       const EdgeInsets.all(kDefaultPadding),
                                 ),
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     FaIcon(

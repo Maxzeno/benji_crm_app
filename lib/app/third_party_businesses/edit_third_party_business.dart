@@ -12,7 +12,6 @@ import 'package:benji_aggregator/controller/business_controller.dart';
 import 'package:benji_aggregator/controller/category_controller.dart';
 import 'package:benji_aggregator/controller/form_controller.dart';
 import 'package:benji_aggregator/controller/latlng_detail_controller.dart';
-import 'package:benji_aggregator/controller/push_notifications_controller.dart';
 import 'package:benji_aggregator/controller/user_controller.dart';
 import 'package:benji_aggregator/model/business_model.dart';
 import 'package:benji_aggregator/services/api_url.dart';
@@ -367,10 +366,10 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
     );
 
     if (response.statusCode.toString().startsWith('2')) {
-      await PushNotificationController.showNotification(
-        title: "Success.",
-        body: "Your business profile has been successfully updated.",
-      );
+      // await PushNotificationController.showNotification(
+      //   title: "Success.",
+      //   body: "Your business profile has been successfully updated.",
+      // );
       // reload
       BusinessController.instance.getBusinesses(
           widget.business.vendorOwner.id.toString(),
@@ -417,7 +416,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.camera,
                             color: kAccentColor,
@@ -450,7 +449,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.image,
                             color: kAccentColor,
@@ -504,7 +503,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.camera,
                             color: kAccentColor,
@@ -537,7 +536,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.image,
                             color: kAccentColor,
@@ -662,7 +661,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                Text(
+                const Text(
                   "This is visible to users",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -744,7 +743,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            child: Text(
+                            child: const Text(
                               'Upload business logo',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -818,7 +817,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            child: Text(
+                            child: const Text(
                               'Upload cover image',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -994,7 +993,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1051,7 +1050,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1139,7 +1138,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1196,7 +1195,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1283,7 +1282,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1340,7 +1339,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1427,7 +1426,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1484,7 +1483,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1571,7 +1570,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1628,7 +1627,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1715,7 +1714,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1772,7 +1771,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1859,7 +1858,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,
@@ -1916,7 +1915,7 @@ class _EditThirdPartyBusinessState extends State<EditThirdPartyBusiness> {
                                           style: TextButton.styleFrom(
                                             padding: const EdgeInsets.all(2),
                                           ),
-                                          child: Text(
+                                          child: const Text(
                                             "Change",
                                             style: TextStyle(
                                               color: kAccentColor,

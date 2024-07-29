@@ -1,165 +1,111 @@
-import 'dart:developer';
+import 'dart:io';
 
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:benji_aggregator/controller/api_processor_controller.dart';
+import 'package:benji_aggregator/controller/user_controller.dart';
+import 'package:benji_aggregator/services/api_url.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as http;
 
-import '../../theme/colors.dart';
-import '../app/splash_screens/splash_screen.dart';
-import '../src/utils/constants.dart';
+class MyPushNotification {
+  final firebase = FirebaseMessaging.instance;
 
-class PushNotificationController extends GetxController {
-  static PushNotificationController get instance {
-    return Get.find<PushNotificationController>();
-  }
+  final _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  static Future<void> initializeNotification() async {
-    await AwesomeNotifications().initialize(
-      "resource://drawable/notification_icon",
-      [
-        NotificationChannel(
-          channelKey: "basic_channel",
-          channelGroupKey: "basic_channel_group",
-          channelName: "Basic Notifications",
-          channelDescription: "Channel for basic notifications",
-          channelShowBadge: true,
-          defaultColor: kPrimaryColor,
-          ledColor: kAccentColor,
-          enableVibration: true,
-          enableLights: true,
-          defaultRingtoneType: DefaultRingtoneType.Notification,
-          vibrationPattern: lowVibrationPattern,
-          importance: NotificationImportance.High,
-          onlyAlertOnce: true,
-          playSound: true,
-          criticalAlerts: true,
-        ),
-      ],
-      channelGroups: [
-        NotificationChannelGroup(
-          channelGroupKey: "basic_channel_group",
-          channelGroupName: "Basic group",
-        ),
-      ],
-      debug: true,
-    );
-    await AwesomeNotifications().isNotificationAllowed().then(
-      (isAllowed) async {
-        if (!isAllowed) {
-          await AwesomeNotifications().requestPermissionToSendNotifications();
+  Future<void> initNotify() async {
+    await firebase.requestPermission();
+
+    var token = await firebase.getToken();
+
+    if (token != null) {
+      try {
+        final user = UserController.instance.user.value;
+        var url = Api.baseUrl + Api.createPushNotification;
+
+        Map data = {"user_id": user.id, "token": token};
+
+        http.Response? response =
+            await HandleData.postApi(url, user.token, data);
+
+        debugPrint("Response status code: ${response?.statusCode}");
+        if (response?.statusCode == 200) {
+          debugPrint("Response body: ${response?.body}");
+        } else {
+          debugPrint("Response body: ${response?.body}");
         }
-      },
-    );
-
-    await AwesomeNotifications().setListeners(
-      onActionReceivedMethod: onActionReceivedMethod,
-      onNotificationCreatedMethod: onNotificationCreateMethod,
-      onNotificationDisplayedMethod: onNotificationDisplayedMethod,
-      onDismissActionReceivedMethod: onDismissActionReceivedMethod,
-    );
-  }
-
-  static Future<void> onNotificationCreateMethod(
-      ReceivedNotification receivedNotification) async {
-    log("onNotificationCreateMethod");
-  }
-
-  static Future<void> onNotificationDisplayedMethod(
-      ReceivedNotification receivedNotification) async {
-    log("onNotificationDisplayMethod");
-  }
-
-  static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction) async {
-    Get.key.currentState?.push(
-      MaterialPageRoute(
-        builder: (_) => SplashScreen(),
-      ),
-    );
-    log("onActionReceiveMethod");
-    final payload = receivedAction.payload ?? {};
-    if (payload["navigate"] == "true") {
-      Get.key.currentState?.push(
-        MaterialPageRoute(
-          builder: (_) => SplashScreen(),
-        ),
-      );
+      } on SocketException {
+        ApiProcessorController.errorSnack("Please connect to the internet");
+      } catch (e) {
+        debugPrint(e.toString());
+      }
     }
   }
 
-  static Future<void> onDismissActionReceivedMethod(
-      ReceivedNotification receivedNotification) async {
-    log("onDismissActionReceivedMethod");
+  Future<void> setup() async {
+    const androidInitializationSetting =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+    const iosInitializationSetting = DarwinInitializationSettings();
+    const initSettings = InitializationSettings(
+        android: androidInitializationSetting, iOS: iosInitializationSetting);
+    await _flutterLocalNotificationsPlugin.initialize(initSettings);
   }
 
-  static Future<void> showNotification({
-    required final String title,
-    required final String body,
-    final String? summary,
-    final Map<String, String>? payload,
-    final ActionType actionType = ActionType.Default,
-    final NotificationLayout notificationLayout = NotificationLayout.Default,
-    final NotificationCategory? category,
-    final String? bigPicture,
-    final List<NotificationActionButton>? actionButtons,
-    final bool scheduled = false,
-    final int? interval,
-    final bool repeats = false,
-    final bool allowWhileIdle = true,
-    final bool preciseAlarm = false,
-    final String icon = "",
-    final bool criticalAlert = false,
-    final String customSound = "",
-    final String largeIcon = "",
-    final bool hideLargeIconOnExpand = true,
-    final bool roundedBigPicture = false,
-    final bool roundedLargeIcon = false,
-    final bool autoDismissible = true,
-    final Color? color,
-    final bool showWhen = true,
-    final bool displayOnBackground = true,
-    final bool displayOnForeground = true,
-    final bool wakeUpScreen = true,
-  }) async {
-    assert(!scheduled || (scheduled && interval != null));
-
-    await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: createUniqueId(),
-        channelKey: "basic_channel",
-        title: title,
-        body: body,
-        actionType: actionType,
-        notificationLayout: notificationLayout,
-        summary: summary,
-        category: category,
-        payload: payload,
-        bigPicture: bigPicture,
-        color: color ?? kSecondaryColor,
-        icon: icon,
-        criticalAlert: criticalAlert,
-        customSound: customSound,
-        largeIcon: largeIcon,
-        hideLargeIconOnExpand: hideLargeIconOnExpand,
-        roundedBigPicture: roundedBigPicture,
-        roundedLargeIcon: roundedLargeIcon,
-        autoDismissible: autoDismissible,
-        showWhen: showWhen,
-        displayOnBackground: displayOnBackground,
-        displayOnForeground: displayOnForeground,
-        wakeUpScreen: wakeUpScreen,
-      ),
-      actionButtons: actionButtons,
-      schedule: scheduled
-          ? NotificationInterval(
-              interval: interval,
-              timeZone:
-                  await AwesomeNotifications().getLocalTimeZoneIdentifier(),
-              repeats: repeats,
-              allowWhileIdle: allowWhileIdle,
-              preciseAlarm: preciseAlarm,
-            )
-          : null,
+  void showLocalNotification(String title, String body) {
+    const androidNotificationDetail = AndroidNotificationDetails(
+      '0', // channel Id
+      'general', // channel Name,
+      sound: RawResourceAndroidNotificationSound('benji'),
     );
+    const iosNotificatonDetail = DarwinNotificationDetails();
+    const notificationDetails = NotificationDetails(
+      iOS: iosNotificatonDetail,
+      android: androidNotificationDetail,
+    );
+    _flutterLocalNotificationsPlugin.show(0, title, body, notificationDetails);
+  }
+
+  Future<void> showForegroundNotification() async {
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
+
+    await firebase.setForegroundNotificationPresentationOptions(
+        alert: true, sound: true);
+  }
+
+  Future messaging() async {
+    firebase.getInitialMessage().then((message) {
+      if (message != null) {
+        showLocalNotification(
+          message.notification?.title ?? "",
+          message.notification?.body ?? "",
+        );
+      }
+    });
+
+    // To initialise when app is not terminated
+    FirebaseMessaging.onMessage.listen((message) {
+      if (message.notification != null) {
+        showLocalNotification(
+          message.notification?.title ?? "",
+          message.notification?.body ?? "",
+        );
+      }
+    });
+
+    FirebaseMessaging.onBackgroundMessage((message) async {
+      showLocalNotification(
+        message.notification?.title ?? "",
+        message.notification?.body ?? "",
+      );
+    });
+
+    // FirebaseMessaging.onMessageOpenedApp.listen((message) {
+    //   // do something like navigate to a page
+    // });
   }
 }

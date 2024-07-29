@@ -20,7 +20,6 @@ import '../../controller/business_controller.dart';
 import '../../controller/category_controller.dart';
 import '../../controller/form_controller.dart';
 import '../../controller/latlng_detail_controller.dart';
-import '../../controller/push_notifications_controller.dart';
 import '../../controller/user_controller.dart';
 import '../../controller/withdraw_controller.dart';
 import '../../model/third_party_vendor_model.dart';
@@ -369,10 +368,10 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
     );
     if (FormController.instance.status.toString().startsWith('20')) {
       await BusinessController.instance.refreshData(vendorId!, agentId);
-      await PushNotificationController.showNotification(
-        title: "Success.",
-        body: "Your business profile has been successfully updated.",
-      );
+      // await PushNotificationController.showNotification(
+      //   title: "Success.",
+      //   body: "Your business profile has been successfully updated.",
+      // );
 
       Get.close(1);
     }
@@ -416,7 +415,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.camera,
                             color: kAccentColor,
@@ -449,7 +448,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.image,
                             color: kAccentColor,
@@ -504,7 +503,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.camera,
                             color: kAccentColor,
@@ -537,7 +536,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                             ),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: FaIcon(
                             FontAwesomeIcons.image,
                             color: kAccentColor,
@@ -662,7 +661,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Text(
+              const Text(
                 "This is visible to users",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -691,7 +690,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                 ),
                               ),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: FaIcon(
                                 FontAwesomeIcons.image,
                                 color: kAccentColor,
@@ -742,7 +741,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: const EdgeInsets.all(10),
-                        child: Text(
+                        child: const Text(
                           'Upload business logo',
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -831,7 +830,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: const EdgeInsets.all(10),
-                        child: Text(
+                        child: const Text(
                           'Upload cover image',
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -1033,7 +1032,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1088,7 +1087,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1174,7 +1173,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1229,7 +1228,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1314,7 +1313,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1369,7 +1368,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1455,7 +1454,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1511,7 +1510,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1597,7 +1596,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1653,7 +1652,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1738,7 +1737,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1793,7 +1792,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1879,7 +1878,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1935,7 +1934,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         style: TextButton.styleFrom(
                                           padding: const EdgeInsets.all(2),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Change",
                                           style: TextStyle(
                                             color: kAccentColor,
@@ -1978,7 +1977,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                                         controller.isLoad.value
                                     ? "Loading..."
                                     : "Select a bank",
-                                suffixIcon: FaIcon(
+                                suffixIcon: const FaIcon(
                                   FontAwesomeIcons.chevronDown,
                                   size: 20,
                                   color: kAccentColor,
@@ -2343,8 +2342,8 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                               focusNode: addressFN,
                               hintText: "Search a location",
                               textInputType: TextInputType.text,
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(kDefaultPadding),
+                              prefixIcon: const Padding(
+                                padding: EdgeInsets.all(kDefaultPadding),
                                 child: FaIcon(
                                   FontAwesomeIcons.locationDot,
                                   color: kAccentColor,
@@ -2360,7 +2359,7 @@ class _AddThirdPartyBusinessState extends State<AddThirdPartyBusiness> {
                             ),
                             ElevatedButton.icon(
                               onPressed: getLocationOnMap,
-                              icon: FaIcon(
+                              icon: const FaIcon(
                                 FontAwesomeIcons.locationArrow,
                                 color: kAccentColor,
                                 size: 18,
