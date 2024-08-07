@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyCeBNy7o_fnEeG33lvV9vzfCi6TDKQDwZI</string>
+	<string>AIzaSyAyMKgWws1uhZq7aH7NYhKqWSbSANHnD78</string>
 	<key>GCM_SENDER_ID</key>
-	<string>912983858748</string>
+	<string>432859725374</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.benjiAggregator</string>
+	<string>com.benjiexpress.crm.ios</string>
 	<key>PROJECT_ID</key>
-	<string>keen-tokenizer-400311</string>
+	<string>benji-crm</string>
 	<key>STORAGE_BUCKET</key>
-	<string>keen-tokenizer-400311.appspot.com</string>
+	<string>benji-crm.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:912983858748:ios:596e835574d996890bad39</string>
+	<string>1:432859725374:ios:b22a0150f667a770ad5b6f</string>
 </dict>
 </plist>

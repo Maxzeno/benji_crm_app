@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import flutter_local_notifications
+import FirebaseCore
 
 
 @UIApplicationMain
@@ -9,6 +10,8 @@ import flutter_local_notifications
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    FirebaseApp.configure()
+
     GeneratedPluginRegistrant.register(with: self)
 
     // push notification stuff

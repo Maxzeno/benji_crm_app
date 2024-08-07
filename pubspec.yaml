@@ -38,15 +38,16 @@ dependencies:
   geocoding:
   dotted_border: ^2.0.0+3
   pdf: ^3.10.4
-  screenshot: ^2.1.0
+  screenshot: ^3.0.0
   share_plus: ^7.1.0
   path_provider:
   fluttertoast:
   flutter_carousel_widget:
   readmore:
   group_radio_button:
-  firebase_messaging:
-  firebase_core:
+  firebase_messaging: ^15.0.0
+  # firebase_core:
+  firebase_core: ^3.3.0
   # awesome_notifications:
   # awesome_notifications_core:
   # awesome_notifications_fcm:
@@ -61,7 +62,7 @@ dependencies:
   webview_flutter_wkwebview:
   flutter_polyline_points:
   web_socket_channel:
-  firebase_crashlytics: 3.5.1
+  firebase_crashlytics: ^4.0.4
   flutter_local_notifications:
 
 dev_dependencies:

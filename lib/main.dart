@@ -22,7 +22,6 @@ import 'package:benji_aggregator/controller/withdraw_controller.dart';
 import 'package:benji_aggregator/theme/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -76,13 +75,15 @@ void main() async {
   Get.put(RiderAssignController());
   Get.put(OrderStatusChangeController());
 
-  if (!kIsWeb) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    await FirebaseMessaging.instance.setAutoInitEnabled(true);
-    localNotificationService = MyPushNotification();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  localNotificationService = MyPushNotification();
+  await localNotificationService.firebase.setAutoInitEnabled(true);
 
+  await localNotificationService.setup();
+
+  if (!kIsWeb) {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
     // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
@@ -90,7 +91,6 @@ void main() async {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
-    await localNotificationService.firebase.setAutoInitEnabled(true);
   }
 
   runApp(const MyApp());

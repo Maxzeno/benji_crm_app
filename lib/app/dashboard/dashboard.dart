@@ -11,6 +11,7 @@ import 'package:benji_aggregator/model/app_version.dart';
 import 'package:benji_aggregator/src/components/appbar/dashboard_app_bar.dart';
 import 'package:benji_aggregator/src/components/button/my_elevatedButton.dart';
 import 'package:benji_aggregator/src/utils/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -39,26 +40,22 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
 
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-    //   await UserController.instance.getUser();
-    //   await await VendorController.instance.getMyVendors();
-    //   await NotificationController.instance.runTask();
-    // });
     localNotificationService.initNotify().then((value) {
       localNotificationService.messaging();
     });
-    Timer(
-      const Duration(seconds: 2),
-      () {
-        getAppLatestVersion().then((value) {
-          if (value.version == "0" || value.version == appVersion) {
-            return;
-          }
-          showAppUpdateDialog(context, value);
-        });
-      },
-    );
-
+    if (!kIsWeb) {
+      Timer(
+        const Duration(seconds: 2),
+        () {
+          getAppLatestVersion().then((value) {
+            if (value.version == "0" || value.version == appVersion) {
+              return;
+            }
+            showAppUpdateDialog(context, value);
+          });
+        },
+      );
+    }
     scrollController.addListener(_scrollListener);
   }
 

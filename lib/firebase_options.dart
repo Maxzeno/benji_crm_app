@@ -17,19 +17,13 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -51,6 +45,25 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDMCdP2SVvVYxlaN_qmXK51IKxrPUP3UlU',
+    appId: '1:432859725374:web:72a9d87265c694c7ad5b6f',
+    messagingSenderId: '432859725374',
+    projectId: 'benji-crm',
+    authDomain: 'benji-crm.firebaseapp.com',
+    storageBucket: 'benji-crm.appspot.com',
+    measurementId: 'G-4YD8PF5306',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyAyMKgWws1uhZq7aH7NYhKqWSbSANHnD78',
+    appId: '1:432859725374:ios:b22a0150f667a770ad5b6f',
+    messagingSenderId: '432859725374',
+    projectId: 'benji-crm',
+    storageBucket: 'benji-crm.appspot.com',
+    iosBundleId: 'com.benjiexpress.crm.ios',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAuC_kqSIQXoB2_rMY6cxYhAfkEPq3TT9Q',
